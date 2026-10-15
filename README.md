@@ -45,3 +45,13 @@ python main.py
 ```
 
 Requires Windows; some window-monitoring operations may need elevated rights. Review the target browser path and permissions before starting.
+
+## License & Attribution / 许可与来源
+
+Original project code authored for this repository is released under the MIT License; see [LICENSE](./LICENSE).
+
+When reusing or redistributing a substantial portion, retain the LICENSE and its copyright notice. The copyright notice includes this original source URL: https://github.com/change979666/page-archiver-watcher. Please keep the source link visible in your redistributed source or project documentation.
+
+This license applies only to original material that the repository maintainer has the right to license. Third-party libraries, vendor code, platform SDKs, trademarks, screenshots, icons, fonts, and other external assets remain subject to their respective licenses and terms. Review those terms before reuse.
+
+**Project status:** personal/archived project, shared as-is. Maintenance, compatibility, and production readiness are not guaranteed.
