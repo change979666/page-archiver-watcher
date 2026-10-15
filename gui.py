@@ -23,16 +23,27 @@ class ArchiveGUI:
         self.root.title("网页归档工具")
         self.root.geometry("800x600")
         
-        # 战斧浏览器配置
-        self.zhanfu_browser_path = r"D:\Program Files (x86)\zhanfubrowser\4.2.0.8\Core\zhanfubrowser.exe"
-        self.zhanfu_user_data = r"C:\Users\Administrator\AppData\Local\zhanfubrowser_v2_1\UserData\1685142"
+        # 战斧浏览器配置：通过环境变量适配本机路径，避免提交机器专属路径
+        program_files_x86 = os.environ.get("ProgramFiles(x86)", r"C:\Program Files (x86)")
+        local_app_data = os.environ.get(
+            "LOCALAPPDATA",
+            os.path.join(os.path.expanduser("~"), "AppData", "Local"),
+        )
+        self.zhanfu_browser_path = os.environ.get(
+            "ZHANFU_BROWSER_PATH",
+            os.path.join(program_files_x86, "zhanfubrowser", "4.2.0.8", "Core", "zhanfubrowser.exe"),
+        )
+        self.zhanfu_user_data = os.environ.get(
+            "ZHANFU_USER_DATA_DIR",
+            os.path.join(local_app_data, "zhanfubrowser_v2_1", "UserData"),
+        )
         
         # 战斧浏览器特征
         self.zhanfu_identifiers = {
             "process_name": "zhanfubrowser.exe",
             "cmd_patterns": [
                 "--browser_id=",
-                "store_data_path=NQROxfI4aSnmSex7nYm7kEyQsDWbtnhuh5UPwxDcQ54whyy5vclEtxdez6BHmNgX7a0PRinp1I8"
+                "store_data_path="
             ]
         }
         
@@ -142,8 +153,8 @@ class ArchiveGUI:
         default_config = {
             "filter_text": "",
             "window_size": "800x600",
-            "browser_path": r"D:\Program Files (x86)\zhanfubrowser\4.2.0.8\Core\zhanfubrowser.exe",
-            "user_data": r"C:\Users\Administrator\AppData\Local\zhanfubrowser_v2_1\UserData\1685142"
+            "browser_path": self.zhanfu_browser_path,
+            "user_data": self.zhanfu_user_data
         }
         try:
             if os.path.exists(self.config_file):
