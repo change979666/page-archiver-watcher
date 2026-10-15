@@ -1,0 +1,13 @@
+# Runtime-generated browsing data and local machine configuration
+archived_pages/
+archived_urls.json
+gui_config.json
+
+# Python runtime artifacts
+__pycache__/
+*.py[cod]
+*.log
+
+# Virtual environments
+.venv/
+venv/
