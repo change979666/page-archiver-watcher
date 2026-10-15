@@ -46,6 +46,11 @@ python main.py
 
 Requires Windows; some window-monitoring operations may need elevated rights. Review the target browser path and permissions before starting.
 
+## Known limitations
+
+- The Python Tkinter side (`main.py` / `gui.py` / `page_archiver.py`) is the runnable part.
+- The Chrome-extension side (`background.js`, `popup/`, `icons/`) is present, but `manifest.json` in this repository is currently an empty placeholder, so the unpacked extension **cannot be loaded into Chrome as-is**. If you want to use that path, you would need to author a Manifest V3 manifest covering the APIs the code actually uses (`storage`, `tabs`, `scripting`, `downloads`, plus host permissions for `scripting.executeScript`).
+
 ## License & Attribution / 许可与来源
 
 Original project code authored for this repository is released under the MIT License; see [LICENSE](./LICENSE).
