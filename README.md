@@ -26,18 +26,22 @@ run.bat             # one-click launcher
 
 ## Privacy note
 
-Real browsing data is **not** committed to this repository:
+Captured HTML pages, browsing URL history, and local browser configuration are runtime data and are not tracked by Git. The repository's `.gitignore` excludes `archived_pages/`, `archived_urls.json`, and `gui_config.json`. If the app is run again, these files may be recreated locally; do not force-add them to a public commit.
 
-- The `archived_pages/` directory (captured user pages) is excluded.
-- `archived_urls.json` ships as an empty array `[]` - no real URLs are stored.
+## Browser path configuration
+
+The browser executable and user-data directory are no longer hard-coded to one machine. Defaults are derived from `ProgramFiles(x86)` and `LOCALAPPDATA`. Set these environment variables before first launch if your installation differs:
+
+- `ZHANFU_BROWSER_PATH`: full path to the browser executable
+- `ZHANFU_USER_DATA_DIR`: browser user-data directory (use only a profile you are authorized to access)
+
+If a local `gui_config.json` already exists, its `browser_path` and `user_data` values take precedence over defaults. Keep this local config out of version control.
 
 ## Run
 
-```
-pip install -r requirements.txt
+```powershell
+python -m pip install -r requirements.txt
 python main.py
 ```
 
-Requires Windows and an Administrator shell (the window-monitoring / browser integration
-needs elevated rights). Browser paths are configured in `gui.py` for a local install;
-adjust them to your own environment.
+Requires Windows; some window-monitoring operations may need elevated rights. Review the target browser path and permissions before starting.
